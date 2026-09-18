@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ProductForm
 from .models import Product
 # Create your views here.
@@ -26,7 +26,7 @@ def product_list_view(request):
 # Update View
 
 def product_update_view(request, product_id):
-    product = Product.objects.get(product_id =product_id)
+    product = get_object_or_404(Product, product_id=product_id)
     form = ProductForm(instance=product)
     if request.method == "POST":
         form = ProductForm(request.POST, instance=product)
@@ -39,7 +39,7 @@ def product_update_view(request, product_id):
 # Delete  View
 
 def product_delete_view(request, product_id):
-    product = Product.objects.get(product_id=product_id)
+    product = get_object_or_404(Product, product_id=product_id)
     form = ProductForm()
     if request.method == 'POST':
         product.delete()
