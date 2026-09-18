@@ -4,7 +4,7 @@ from .models import Product
 # Create your views here.
 
 # Home 
-def home_view(self, request):
+def home_view(request):
     return render(request, 'invApp/home.html')
 
 # Create View
