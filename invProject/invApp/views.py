@@ -27,13 +27,13 @@ def product_list_view(request):
 
 def product_update_view(request, product_id):
     product = Product.objects.get(product_id =product_id)
-    form = ProductForm()
+    form = ProductForm(instance=product)
     if request.method == "POST":
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
             return redirect( 'product_list')
-    return redirect(request, 'invApp/product_form.html', {'form':form})
+    return render(request, 'invApp/product_form.html', {'form':form})
 
 
 # Delete  View
